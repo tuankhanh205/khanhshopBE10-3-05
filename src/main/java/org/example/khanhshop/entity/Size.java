@@ -1,4 +1,5 @@
 package org.example.khanhshop.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class Size {
     @Column(nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "size")
+    @JsonIgnore
+    @OneToMany(mappedBy = "size", cascade = CascadeType.ALL)
     private List<ProductDetail> productDetails;
 }

@@ -1,4 +1,4 @@
-package org.example.khanhshop.service;
+package org.example.khanhshop.service.admin.user;
 import org.example.khanhshop.entity.Role;
 import org.example.khanhshop.entity.User;
 import org.example.khanhshop.enums.ERole;

@@ -23,13 +23,15 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(request ->
-                request.requestMatchers(HttpMethod.POST,ENDPOINTS).hasAuthority("ROLE_ADMIN").
-                        requestMatchers(HttpMethod.POST,"/user","/tet/api/login").permitAll().
-                anyRequest().authenticated());
-        http.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder())));
-
         http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
+        http.authorizeHttpRequests(request ->
+                request.anyRequest().permitAll()
+//                request.requestMatchers(HttpMethod.POST,ENDPOINTS).hasAuthority("ROLE_ADMIN").
+//                        requestMatchers(HttpMethod.POST,"/user","/tet/api/login").permitAll().
+//                anyRequest().authenticated());
+//        http.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder())));
+        );
+//        http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
         return http.build();
     }
     @Bean

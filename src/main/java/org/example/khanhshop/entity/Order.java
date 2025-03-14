@@ -1,6 +1,7 @@
 package org.example.khanhshop.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -44,13 +45,14 @@ public class Order {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     @OneToOne(mappedBy = "order")
     private Payment payment;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;
 }

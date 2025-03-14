@@ -1,8 +1,8 @@
-package org.example.khanhshop.controler;
+package org.example.khanhshop.controler.admin;
 
 
 import org.example.khanhshop.entity.User;
-import org.example.khanhshop.service.Uservice;
+import org.example.khanhshop.service.admin.user.Uservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

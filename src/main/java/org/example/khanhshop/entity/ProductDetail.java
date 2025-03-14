@@ -1,5 +1,6 @@
 package org.example.khanhshop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,22 +21,24 @@ public class ProductDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "color_id", nullable = false)
     private Color color;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "size_id", nullable = false)
     private Size size;
 
-    @OneToMany(mappedBy = "productDetail")
+    @JsonIgnore
+    @OneToMany(mappedBy = "productDetail" ,cascade = CascadeType.ALL)
     List<OrderItem>orderItems;
 
-    @OneToMany(mappedBy = "productDetail")
+    @JsonIgnore
+    @OneToMany(mappedBy = "productDetail",cascade = CascadeType.ALL)
     List<CartItem> cartItems;
 
     @Column(nullable = false)
