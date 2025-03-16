@@ -44,7 +44,7 @@ public class Product {
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, orphanRemoval = true)
     List<ProductDetail> productDetails;
 
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "product")
     private List<Images> images;
 
     @ManyToOne

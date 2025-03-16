@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserControler {
     @Autowired
     private Uservice uservice;
-    @PostMapping
+    @PostMapping("/tet")
     public User createMK(@RequestBody User user){
         return uservice.createMK(user);
     }

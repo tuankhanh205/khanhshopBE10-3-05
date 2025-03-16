@@ -8,16 +8,18 @@ public class ProductDetailResponse {
     private String sizeName;
     private BigDecimal price;
     private Integer stock;
+    private String status;
 
     public ProductDetailResponse() {
     }
 
-    public ProductDetailResponse(Long id, String colorName, String sizeName, BigDecimal price, Integer stock) {
+    public ProductDetailResponse(Long id, String colorName, String sizeName, BigDecimal price, Integer stock, String status) {
         this.id = id;
         this.colorName = colorName;
         this.sizeName = sizeName;
         this.price = price;
         this.stock = stock;
+        this.status = status;
     }
 
     public Long getId() {
@@ -58,5 +60,13 @@ public class ProductDetailResponse {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

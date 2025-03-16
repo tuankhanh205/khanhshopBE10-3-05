@@ -13,30 +13,35 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.crypto.spec.SecretKeySpec;
 
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private final String [] ENDPOINTS={"/tet"};
+
+    private static final String[] PUBLIC_ENDPOINTS = {"/user/tet", "/tet/api/login"};
+    private static final String[] ADMIN_ENDPOINTS = {"/tet"};
+
     @Value("${jwt.signer_key}")
-    private String SIGNER_KEY;
+    private String signerKey;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
-        http.authorizeHttpRequests(request ->
-                request.anyRequest().permitAll()
-//                request.requestMatchers(HttpMethod.POST,ENDPOINTS).hasAuthority("ROLE_ADMIN").
-//                        requestMatchers(HttpMethod.POST,"/user","/tet/api/login").permitAll().
-//                anyRequest().authenticated());
-//        http.oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder())));
-        );
-//        http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
+        http .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll()
+
+//                        .requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
+//                        .requestMatchers(HttpMethod.GET, ADMIN_ENDPOINTS).hasAuthority("SCOPE_ROLE_ADMIN")
+//                        .anyRequest().authenticated()
+                );
+//                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder())))
+//                .csrf(csrf -> csrf.disable()); // Tắt CSRF nếu không dùng session
+
+
         return http.build();
     }
+
     @Bean
     JwtDecoder jwtDecoder(){
-        SecretKeySpec secretKeySpec=new SecretKeySpec(SIGNER_KEY.getBytes(),"HS512");
+        SecretKeySpec secretKeySpec=new SecretKeySpec(signerKey.getBytes(),"HS512");
         return NimbusJwtDecoder.withSecretKey(secretKeySpec)
                 .macAlgorithm(MacAlgorithm.HS512)
                 .build();

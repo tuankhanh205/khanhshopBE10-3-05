@@ -20,7 +20,7 @@ public class Uservice {
     private RoleRepository roleRepository;
 public User createMK(User user){
     User user1=new User();
-    Set<Role> roles=roleRepository.findByName(ERole.ROLE_USER);
+    Set<Role> roles=roleRepository.findByName(ERole.ROLE_ADMIN);
     //mã hóa mật khẩu
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
     user1.setUserName(user.getUserName());
