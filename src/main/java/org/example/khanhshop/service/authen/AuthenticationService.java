@@ -3,12 +3,11 @@ package org.example.khanhshop.service.authen;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jwt.JWTClaimsSet;
-
-import org.example.khanhshop.dto.request.AuthenticationRequest;
-import org.example.khanhshop.dto.response.AuthenticationResponse;
+import org.example.khanhshop.dto.admin.request.AuthenticationRequest;
+import org.example.khanhshop.dto.admin.response.AuthenticationResponse;
 import org.example.khanhshop.entity.User;
-import org.example.khanhshop.repository.RoleRepository;
-import org.example.khanhshop.repository.UserRepository;
+import org.example.khanhshop.repository.admin.RoleRepository;
+import org.example.khanhshop.repository.admin.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,6 +19,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 
+
 @Service
 public class AuthenticationService {
     @Autowired
@@ -27,8 +27,10 @@ public class AuthenticationService {
     @Autowired
     private UserRepository userRepository;
 
+
     @Value("${jwt.signer_key}")
     private String SIGNER_KEY;
+
 
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);

@@ -1,6 +1,4 @@
-package org.example.khanhshop.dto.response;
-
-import org.example.khanhshop.entity.Images;
+package org.example.khanhshop.dto.admin.response;
 
 import java.time.LocalDateTime;
 import java.util.List;

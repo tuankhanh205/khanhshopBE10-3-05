@@ -1,8 +1,8 @@
 package org.example.khanhshop.controler.admin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.khanhshop.dto.request.ProductRequest;
-import org.example.khanhshop.dto.response.ProductResponse;
+import org.example.khanhshop.dto.admin.request.ProductRequest;
+import org.example.khanhshop.dto.admin.response.ProductResponse;
 import org.example.khanhshop.service.admin.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,7 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+@CrossOrigin(origins = "http://localhost:5174")
 @RestController
 @RequestMapping("/tet")
 public class ProductControler {
@@ -45,10 +49,14 @@ public class ProductControler {
     }
 
     @GetMapping("/product")
-    ResponseEntity<Page<ProductResponse>> findAll(@RequestParam(defaultValue = "0") int page,
-                                                  @RequestParam(defaultValue = "3") int size){
-        return ResponseEntity.ok(productService.findAll(page, size));
+    public ResponseEntity<Page<ProductResponse>> findAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        Page<ProductResponse> productPage = productService.findAll(page, size);
+        return ResponseEntity.ok(productPage);
     }
+
 
     @GetMapping("/product/getone/{id}")
     ResponseEntity<ProductResponse> findAll(@PathVariable("id") long id){

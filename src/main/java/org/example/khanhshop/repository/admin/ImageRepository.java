@@ -1,4 +1,4 @@
-package org.example.khanhshop.repository;
+package org.example.khanhshop.repository.admin;
 
 import jakarta.transaction.Transactional;
 import org.example.khanhshop.entity.Images;
@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.awt.*;
 @Repository
 public interface ImageRepository extends JpaRepository<Images, Long> {
     @Modifying

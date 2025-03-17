@@ -1,4 +1,4 @@
-package org.example.khanhshop.dto.request;
+package org.example.khanhshop.dto.admin.request;
 
 import java.math.BigDecimal;
 

@@ -1,21 +1,12 @@
-package org.example.khanhshop.dto.request;
+package org.example.khanhshop.dto.admin.request;
 
-import org.example.khanhshop.entity.ProductDetail;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class ProductRequest {
 
     private String name;
 
-
     private String description;
-
-
-
-    private String image;
 
     private Long brandId;
 
@@ -26,10 +17,10 @@ public class ProductRequest {
     public ProductRequest() {
     }
 
-    public ProductRequest(String name, String description, String image, Long brandId, Long categoryId, List<ProductDetailRequest> productDetails) {
+    public ProductRequest(String name, String description,  Long brandId, Long categoryId, List<ProductDetailRequest> productDetails) {
         this.name = name;
         this.description = description;
-        this.image = image;
+
         this.brandId = brandId;
         this.categoryId = categoryId;
         this.productDetails = productDetails;
@@ -51,13 +42,7 @@ public class ProductRequest {
         this.description = description;
     }
 
-    public String getImage() {
-        return image;
-    }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
 
     public Long getBrandId() {
         return brandId;

@@ -1,8 +1,7 @@
 package org.example.khanhshop.service.admin.product;
 
-import org.example.khanhshop.dto.request.ProductRequest;
-import org.example.khanhshop.dto.response.ProductDetailResponse;
-import org.example.khanhshop.dto.response.ProductResponse;
+import org.example.khanhshop.dto.admin.request.ProductRequest;
+import org.example.khanhshop.dto.admin.response.ProductResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 

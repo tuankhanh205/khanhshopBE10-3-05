@@ -1,12 +1,12 @@
 package org.example.khanhshop.service.admin.product;
 
-import org.example.khanhshop.dto.request.ProductDetailRequest;
-import org.example.khanhshop.dto.request.ProductRequest;
-import org.example.khanhshop.dto.response.ProductDetailResponse;
-import org.example.khanhshop.dto.response.ProductResponse;
+import org.example.khanhshop.dto.admin.request.ProductDetailRequest;
+import org.example.khanhshop.dto.admin.request.ProductRequest;
+import org.example.khanhshop.dto.admin.response.ProductDetailResponse;
+import org.example.khanhshop.dto.admin.response.ProductResponse;
 import org.example.khanhshop.entity.*;
 import org.example.khanhshop.enums.EProductDetail;
-import org.example.khanhshop.repository.*;
+import org.example.khanhshop.repository.admin.*;
 import org.example.khanhshop.service.uploadfile.impl.UploadFileImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -53,6 +53,7 @@ private UploadFileImpl uploadFile;
     public Page<ProductResponse> findAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Product> productPage = productRepository.findAll(pageable);
+        System.out.println("Danh sách sản phẩm từ DB: " + productPage.getContent());
         return productPage.map(product -> mapToResponse(product));
     }
 
@@ -114,7 +115,7 @@ private UploadFileImpl uploadFile;
         List<ProductDetailResponse> detailResponses = new ArrayList<>();
         for (ProductDetail detail : product.getProductDetails()) {
 
-            if (!detail.getStatus().equals(EProductDetail.INACTIVE)) { // Lọc sản phẩm con ngừng kinh doanh
+            if (detail.getStatus().equals(EProductDetail.ACTIVE)) { // Lọc sản phẩm con ngừng kinh doanh
                 ProductDetailResponse detailResponse = new ProductDetailResponse();
                 detailResponse.setId(detail.getId());
                 detailResponse.setPrice(detail.getPrice());

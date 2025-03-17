@@ -1,9 +1,8 @@
 package org.example.khanhshop.service.admin.productdetail;
 
-import org.example.khanhshop.dto.response.ProductDetailResponse;
-import org.example.khanhshop.dto.response.ProductResponse;
+import org.example.khanhshop.dto.admin.response.ProductDetailResponse;
 import org.example.khanhshop.entity.ProductDetail;
-import org.example.khanhshop.repository.ProductDetailRepository;
+import org.example.khanhshop.repository.admin.ProductDetailRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

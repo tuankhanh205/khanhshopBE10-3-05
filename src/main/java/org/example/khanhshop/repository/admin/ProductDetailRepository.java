@@ -1,4 +1,4 @@
-package org.example.khanhshop.repository;
+package org.example.khanhshop.repository.admin;
 
 import org.example.khanhshop.entity.ProductDetail;
 import org.springframework.data.jpa.repository.JpaRepository;

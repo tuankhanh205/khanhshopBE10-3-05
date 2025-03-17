@@ -1,6 +1,6 @@
 package org.example.khanhshop.service.admin.productdetail;
 
-import org.example.khanhshop.dto.response.ProductDetailResponse;
+import org.example.khanhshop.dto.admin.response.ProductDetailResponse;
 
 import java.util.List;
 
