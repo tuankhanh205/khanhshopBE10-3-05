@@ -30,6 +30,10 @@ public class ProductDetail {
     @JoinColumn(name = "size_id", nullable = false)
     private Size size;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "brand_id", nullable = false)
+    private Brand brand;
+
     @JsonIgnore
     @OneToMany(mappedBy = "productDetail" ,cascade = CascadeType.ALL)
     List<OrderItem>orderItems;
@@ -50,11 +54,12 @@ public class ProductDetail {
     public ProductDetail() {
     }
 
-    public ProductDetail(Long id, Product product, Color color, Size size, List<OrderItem> orderItems, List<CartItem> cartItems, EProductDetail status, BigDecimal price, Integer stock) {
+    public ProductDetail(Long id, Product product, Color color, Size size, Brand brand, List<OrderItem> orderItems, List<CartItem> cartItems, EProductDetail status, BigDecimal price, Integer stock) {
         this.id = id;
         this.product = product;
         this.color = color;
         this.size = size;
+        this.brand = brand;
         this.orderItems = orderItems;
         this.cartItems = cartItems;
         this.status = status;
@@ -92,6 +97,14 @@ public class ProductDetail {
 
     public void setSize(Size size) {
         this.size = size;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     public List<OrderItem> getOrderItems() {

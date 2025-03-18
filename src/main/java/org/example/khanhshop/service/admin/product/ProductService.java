@@ -64,8 +64,8 @@ private UploadFileImpl uploadFile;
         product.setDescription(productRequest.getDescription());
         Category category=categoryRepository.findById(productRequest.getCategoryId()).orElseThrow(()-> new RuntimeException("ko co id category nay"));
         product.setCategory(category);
-        Brand brand=brandRepository.findById(productRequest.getBrandId()).orElseThrow(()->new RuntimeException("ko co id brand nay"));
-        product.setBrand(brand);
+//        Brand brand=brandRepository.findById(productRequest.getBrandId()).orElseThrow(()->new RuntimeException("ko co id brand nay"));
+//        product.setBrand(brand);
         imageRepository.deleteByProductId(product.getId());
         uploadImage(file,product);
         productRepository.save(product);
@@ -101,8 +101,11 @@ private UploadFileImpl uploadFile;
         response.setDescription(product.getDescription());
         response.setCreatedAt(product.getCreatedAt());
         response.setUpdatedAt(product.getUpdatedAt());
+        response.setStatus(product.getStatus().name());
         response.setCategoryName(product.getCategory().getName());
-        response.setBrandName(product.getBrand().getName());
+
+
+
         Long totalStock = productDetailRepository.getTotalStockByProductId(response.getId());
         response.setStock(totalStock);
 
@@ -122,6 +125,7 @@ private UploadFileImpl uploadFile;
                 detailResponse.setStock(detail.getStock());
                 detailResponse.setColorName(detail.getColor().getName());
                 detailResponse.setSizeName(detail.getSize().getName());
+                detailResponse.setBrandName(detail.getBrand().getName());
                 detailResponse.setStatus(detail.getStatus().name());
                 detailResponses.add(detailResponse);
             }
@@ -141,7 +145,7 @@ private UploadFileImpl uploadFile;
         ProductResponse response = new ProductResponse();
         response.setName(product.getName());
         response.setDescription(product.getDescription());
-        response.setBrandName(product.getBrand().getName());
+//        response.setBrandName(product.getBrand().getName());
         response.setCategoryName(product.getCategory().getName());
         List<String> imageUrl=new ArrayList<>();
         for(Images images:product.getImages()){
@@ -178,6 +182,8 @@ private UploadFileImpl uploadFile;
             ProductDetail  productDetail = new ProductDetail();
             Color color = colorRepository.findById(productDetailRequest.getColorId()).orElseThrow(() -> new RuntimeException("ko co id color nay"));
             Size size = sizeRepository.findById(productDetailRequest.getSizeId()).orElseThrow(() -> new RuntimeException("ko co id size nay"));
+            Brand brand = brandRepository.findById(productDetailRequest.getBrandId()).orElseThrow(() -> new RuntimeException("ko co id brand nay"));
+            productDetail.setBrand(brand);
             productDetail.setSize(size);
             productDetail.setColor(color);
             productDetail.setPrice(productDetailRequest.getPrice());
@@ -192,9 +198,8 @@ private UploadFileImpl uploadFile;
     public Product createProduct(ProductRequest productRequest) {
         Product product = new Product();
         Category category = categoryRepository.findById(productRequest.getCategoryId()).orElseThrow(() -> new RuntimeException("ko co id category nay"));
-        Brand brand=brandRepository.findById(productRequest.getBrandId()).orElseThrow(()->new RuntimeException("ko co id brand nay"));
+//        Brand brand=brandRepository.findById(productRequest.getBrandId()).orElseThrow(()->new RuntimeException("ko co id brand nay"));
         product.setName(productRequest.getName());
-        product.setBrand(brand);
         product.setDescription(productRequest.getDescription());
         product.setCategory(category);
          product=productRepository.save(product);

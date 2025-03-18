@@ -6,6 +6,7 @@ public class ProductDetailResponse {
     private Long id;
     private String colorName;
     private String sizeName;
+    private String brandName;
     private BigDecimal price;
     private Integer stock;
     private String status;
@@ -13,10 +14,11 @@ public class ProductDetailResponse {
     public ProductDetailResponse() {
     }
 
-    public ProductDetailResponse(Long id, String colorName, String sizeName, BigDecimal price, Integer stock, String status) {
+    public ProductDetailResponse(Long id, String colorName, String sizeName, String brandName, BigDecimal price, Integer stock, String status) {
         this.id = id;
         this.colorName = colorName;
         this.sizeName = sizeName;
+        this.brandName = brandName;
         this.price = price;
         this.stock = stock;
         this.status = status;
@@ -44,6 +46,14 @@ public class ProductDetailResponse {
 
     public void setSizeName(String sizeName) {
         this.sizeName = sizeName;
+    }
+
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 
     public BigDecimal getPrice() {

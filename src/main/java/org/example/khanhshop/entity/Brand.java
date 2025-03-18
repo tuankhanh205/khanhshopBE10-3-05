@@ -14,15 +14,15 @@ public class Brand {
     private String name;
 
     @OneToMany(mappedBy = "brand")
-    private List<Product> products;
+    private List<ProductDetail> productDetails;
 
     public Brand() {
     }
 
-    public Brand(Long id, String name, List<Product> products) {
+    public Brand(Long id, String name, List<ProductDetail> productDetails) {
         this.id = id;
         this.name = name;
-        this.products = products;
+        this.productDetails = productDetails;
     }
 
     public Long getId() {
@@ -41,11 +41,11 @@ public class Brand {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<ProductDetail> getProductDetails() {
+        return productDetails;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProductDetails(List<ProductDetail> productDetails) {
+        this.productDetails = productDetails;
     }
 }

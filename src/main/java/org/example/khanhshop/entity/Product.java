@@ -47,25 +47,21 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Images> images;
 
-    @ManyToOne
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
+
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description,  EProduct status, LocalDateTime createdAt, LocalDateTime updatedAt, Category category, List<ProductDetail> productDetails, List<Images> images, Brand brand) {
+    public Product(Long id, String name, String description, EProduct status, LocalDateTime createdAt, LocalDateTime updatedAt, Category category, List<ProductDetail> productDetails, List<Images> images) {
         this.id = id;
         this.name = name;
         this.description = description;
-
         this.status = status;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.category = category;
         this.productDetails = productDetails;
         this.images = images;
-        this.brand = brand;
     }
 
     public Long getId() {
@@ -91,8 +87,6 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 
     public EProduct getStatus() {
         return status;
@@ -140,29 +134,5 @@ public class Product {
 
     public void setImages(List<Images> images) {
         this.images = images;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", status=" + status +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                ", category=" + category +
-                ", productDetails=" + productDetails +
-                ", images=" + images +
-                ", brand=" + brand +
-                '}';
     }
 }

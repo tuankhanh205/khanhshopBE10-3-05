@@ -5,15 +5,17 @@ import java.math.BigDecimal;
 public class ProductDetailRequest {
     private Long colorId;
     private Long sizeId;
+    private Long brandId;
     private BigDecimal price;
     private Integer stock;
 
     public ProductDetailRequest() {
     }
 
-    public ProductDetailRequest(Long colorId, Long sizeId, BigDecimal price, Integer stock) {
+    public ProductDetailRequest(Long colorId, Long sizeId, Long brandId, BigDecimal price, Integer stock) {
         this.colorId = colorId;
         this.sizeId = sizeId;
+        this.brandId = brandId;
         this.price = price;
         this.stock = stock;
     }
@@ -32,6 +34,14 @@ public class ProductDetailRequest {
 
     public void setSizeId(Long sizeId) {
         this.sizeId = sizeId;
+    }
+
+    public Long getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
     public BigDecimal getPrice() {
