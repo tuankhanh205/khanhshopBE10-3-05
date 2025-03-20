@@ -1,15 +1,9 @@
 package org.example.khanhshop.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.example.khanhshop.enums.EProduct;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,119 +14,31 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
     private String name;
 
-    @Column
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    private EProduct status=EProduct.ACTIVE;
+    @Column(name = "base_price")
+    private String basePrice;
 
     @CreationTimestamp
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at", updatable = false )
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @Column(nullable = false)
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, orphanRemoval = true)
-    List<ProductDetail> productDetails;
+    @OneToMany(mappedBy = "product")
+    private List<Variant> variants;
 
     @OneToMany(mappedBy = "product")
-    private List<Images> images;
+    private List<Review> reviews;
 
-
-
-    public Product() {
-    }
-
-    public Product(Long id, String name, String description, EProduct status, LocalDateTime createdAt, LocalDateTime updatedAt, Category category, List<ProductDetail> productDetails, List<Images> images) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-        this.category = category;
-        this.productDetails = productDetails;
-        this.images = images;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public EProduct getStatus() {
-        return status;
-    }
-
-    public void setStatus(EProduct status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public List<ProductDetail> getProductDetails() {
-        return productDetails;
-    }
-
-    public void setProductDetails(List<ProductDetail> productDetails) {
-        this.productDetails = productDetails;
-    }
-
-    public List<Images> getImages() {
-        return images;
-    }
-
-    public void setImages(List<Images> images) {
-        this.images = images;
-    }
+    @OneToMany(mappedBy = "")
+    List<ProductImage> productImages;
 }

@@ -28,6 +28,9 @@ public class User {
 
     private LocalDate createAt;
 
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
+
     @ManyToMany
     @JoinTable(name = "User_Role",
     joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -41,7 +44,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String userName, String firstName, String lastName, String password, String email, String phoneNumber, LocalDate createAt, Set<Role> roles, List<Order> orders, Cart cart) {
+    public User(Long id, String userName, String firstName, String lastName, String password, String email, String phoneNumber, LocalDate createAt, List<Review> reviews, Set<Role> roles, List<Order> orders, Cart cart) {
         this.id = id;
         this.userName = userName;
         this.firstName = firstName;
@@ -50,6 +53,7 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.createAt = createAt;
+        this.reviews = reviews;
         this.roles = roles;
         this.orders = orders;
         this.cart = cart;
@@ -117,6 +121,14 @@ public class User {
 
     public void setCreateAt(LocalDate createAt) {
         this.createAt = createAt;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 
     public Set<Role> getRoles() {

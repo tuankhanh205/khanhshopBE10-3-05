@@ -1,43 +1,39 @@
 package org.example.khanhshop.dto.admin.response;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class ProductResponse {
     private Long id;
-
     private String name;
-
     private String description;
-
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
-
-    private String categoryName;
-    private String status;
-    private Long stock;
-
-    private List<ProductDetailResponse> productDetails;
-
+    private BigDecimal basePrice;
+    private String category;
+    private String thumbnail;
     private List<String> images;
-
-
+    private List<VariantResponse> variants;
+    private Double averageRating;
+    private Integer totalReviews;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     public ProductResponse() {
     }
 
-    public ProductResponse(Long id, String name, String description, LocalDateTime createdAt, LocalDateTime updatedAt, String categoryName, String status, Long stock, List<ProductDetailResponse> productDetails, List<String> images) {
+    public ProductResponse(Long id, String name, String description, BigDecimal basePrice, String category, String thumbnail, List<String> images, List<VariantResponse> variants, Double averageRating, Integer totalReviews, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.basePrice = basePrice;
+        this.category = category;
+        this.thumbnail = thumbnail;
+        this.images = images;
+        this.variants = variants;
+        this.averageRating = averageRating;
+        this.totalReviews = totalReviews;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.categoryName = categoryName;
-        this.status = status;
-        this.stock = stock;
-        this.productDetails = productDetails;
-        this.images = images;
     }
 
     public Long getId() {
@@ -64,6 +60,62 @@ public class ProductResponse {
         this.description = description;
     }
 
+    public BigDecimal getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(BigDecimal basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(String thumbnail) {
+        this.thumbnail = thumbnail;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
+    }
+
+    public List<VariantResponse> getVariants() {
+        return variants;
+    }
+
+    public void setVariants(List<VariantResponse> variants) {
+        this.variants = variants;
+    }
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public Integer getTotalReviews() {
+        return totalReviews;
+    }
+
+    public void setTotalReviews(Integer totalReviews) {
+        this.totalReviews = totalReviews;
+    }
+
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -78,45 +130,5 @@ public class ProductResponse {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Long getStock() {
-        return stock;
-    }
-
-    public void setStock(Long stock) {
-        this.stock = stock;
-    }
-
-    public List<ProductDetailResponse> getProductDetails() {
-        return productDetails;
-    }
-
-    public void setProductDetails(List<ProductDetailResponse> productDetails) {
-        this.productDetails = productDetails;
-    }
-
-    public List<String> getImages() {
-        return images;
-    }
-
-    public void setImages(List<String> images) {
-        this.images = images;
     }
 }

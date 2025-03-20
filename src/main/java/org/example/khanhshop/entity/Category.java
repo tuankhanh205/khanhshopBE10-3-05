@@ -10,10 +10,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "categories")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +21,8 @@ public class Category {
     @Column
     private String description;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    List<Product> products;
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
+
 
 }

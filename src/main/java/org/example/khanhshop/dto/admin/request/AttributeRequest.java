@@ -1,5 +1,5 @@
 package org.example.khanhshop.dto.admin.request;
 
-public class BrandRequest {
+public class AttributeRequest {
     private String name;
 }
