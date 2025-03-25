@@ -1,17 +1,15 @@
-package org.example.khanhshop.dto.admin.request;
+package org.example.khanhshop.dto.admin.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AttributeRequest {
-    private String name;
-    private List<String> value;
+public class AttributeResponse {
+    private String variantName;
+    private String attributeName;
 }

@@ -1,8 +1,19 @@
 package org.example.khanhshop.dto.admin.response;
 
-import java.math.BigDecimal;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class VariantResponse {
     private Long id;
 
@@ -14,65 +25,8 @@ public class VariantResponse {
 
     private String image;
 
-    private List<VariantAttributeResponse> variantAttributeResponses;
+    Map<String, String> attributes = new HashMap<>();
 
-    public VariantResponse() {
-    }
+   private List<AttributeResponse> attributeResponses;
 
-    public VariantResponse(Long id, String sku, BigDecimal price, Integer stock, String image, List<VariantAttributeResponse> variantAttributeResponses) {
-        this.id = id;
-        this.sku = sku;
-        this.price = price;
-        this.stock = stock;
-        this.image = image;
-        this.variantAttributeResponses = variantAttributeResponses;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getSku() {
-        return sku;
-    }
-
-    public void setSku(String sku) {
-        this.sku = sku;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public List<VariantAttributeResponse> getVariantAttributeResponses() {
-        return variantAttributeResponses;
-    }
-
-    public void setVariantAttributeResponses(List<VariantAttributeResponse> variantAttributeResponses) {
-        this.variantAttributeResponses = variantAttributeResponses;
-    }
 }

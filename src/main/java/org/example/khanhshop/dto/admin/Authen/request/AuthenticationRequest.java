@@ -1,4 +1,4 @@
-package org.example.khanhshop.dto.admin.request;
+package org.example.khanhshop.dto.admin.Authen.request;
 
 public class AuthenticationRequest {
     private String userName;

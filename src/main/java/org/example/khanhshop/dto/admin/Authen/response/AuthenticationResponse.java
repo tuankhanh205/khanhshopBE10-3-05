@@ -1,4 +1,4 @@
-package org.example.khanhshop.dto.admin.response;
+package org.example.khanhshop.dto.admin.Authen.response;
 
 public class AuthenticationResponse {
     private String token;

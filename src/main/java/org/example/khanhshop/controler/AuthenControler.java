@@ -1,8 +1,8 @@
 package org.example.khanhshop.controler;
 
 
-import org.example.khanhshop.dto.admin.request.AuthenticationRequest;
-import org.example.khanhshop.dto.admin.response.AuthenticationResponse;
+import org.example.khanhshop.dto.admin.Authen.request.AuthenticationRequest;
+import org.example.khanhshop.dto.admin.Authen.response.AuthenticationResponse;
 import org.example.khanhshop.service.authen.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
