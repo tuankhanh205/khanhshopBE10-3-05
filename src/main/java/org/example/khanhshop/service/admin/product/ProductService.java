@@ -41,22 +41,21 @@ public class ProductService implements ProductItf {
 
     @Override
     public ProductResponse save(ProductRequest productRequest, List<MultipartFile> productFiles, MultipartFile variantImage) throws IOException {
-
-
-        Category category = categoryRepository.findById(productRequest.getCategoryId()).orElseGet(() -> {
-            Category newCategory = new Category();
-            newCategory.setName(productRequest.getCategoryName());
-            return categoryRepository.save(newCategory);
-        });
-
-
+        Category category = categoryRepository.findById(productRequest.getCategoryId()).orElseGet(null);
+        if(category==null){
+            Category category1=new Category();
+            category.setName(productRequest.getCategoryName());
+            categoryRepository.save(category1);
+            if(category1.getName().equalsIgnoreCase(category.getName())){
+                throw  new IOException("ten trung nhap lai");
+            }
+        }
         Product product = new Product();
         product.setName(productRequest.getName());
         product.setBasePrice(productRequest.getBasePrice());
         product.setDescription(productRequest.getDescription());
         product.setCategory(category);
         product = productRepository.save(product); // 🔹 Lưu để có ID
-
 
         List<ProductImage> productImages = uploadImageAll(product, productFiles);
 
@@ -104,15 +103,21 @@ public class ProductService implements ProductItf {
                 Attribute attribute = attributeRepository.findById(variantAttributeRequest.getAttributeId())
                         .orElseThrow(() -> new RuntimeException("Không tìm thấy thuộc tính với ID: " + variantAttributeRequest.getAttributeId()));
 
-                List<AttributeValue> attributeValues = new ArrayList<>(attributeValueRepository.findAllById(variantAttributeRequest.getAttributeValueIds()));
+                List<AttributeValue> attributeValues=new ArrayList<>();
 
-                if (variantAttributeRequest.getNewAttributeValueRequest() != null) {
-                    for (String newValue : variantAttributeRequest.getNewAttributeValueRequest()) {
-                        AttributeValue newAttributeValue = new AttributeValue();
-                        newAttributeValue.setName(newValue);
-                        newAttributeValue.setAttribute(attribute);
-                        newAttributeValue = attributeValueRepository.save(newAttributeValue);
-                        attributeValues.add(newAttributeValue);
+                if(variantAttributeRequest.getAttributeValueIds()!=null&&!variantAttributeRequest.getAttributeValueIds().isEmpty()){
+                    attributeValues = attributeValueRepository.findAllById(variantAttributeRequest.getAttributeValueIds());
+                }
+                if(attributeValues.isEmpty() && variantAttributeRequest.getNewAttributeValueRequest() != null) {
+
+                        for (String newValue : variantAttributeRequest.getNewAttributeValueRequest()) {
+
+                            AttributeValue newAttributeValue = new AttributeValue();
+                            newAttributeValue.setName(newValue);
+                            newAttributeValue.setAttribute(attribute);
+                            newAttributeValue = attributeValueRepository.save(newAttributeValue);
+                            attributeValues.add(newAttributeValue);
+
                     }
                 }
                 attributeOptions.put(attribute.getId(), attributeValues);
@@ -211,7 +216,6 @@ public class ProductService implements ProductItf {
         productResponse.setDescription(product.getDescription());
         List<String> productImages = new ArrayList<>();
 
-
         for (ProductImage productImage : product.getProductImages()) {
             productImages.add(productImage.getImageUrl());
         }
@@ -224,6 +228,8 @@ public class ProductService implements ProductItf {
             variantResponse.setPrice(variant.getPrice());
             variantResponse.setStock(variant.getStock());
             variantResponses.add(variantResponse);
+            variantResponse.setImage(variant.getVariantImage().getImageUrl());
+
         }
         productResponse.setVariants(variantResponses);
         productResponse.setCreatedAt(product.getCreatedAt());

@@ -12,5 +12,6 @@ import java.util.Map;
 @Service
 public interface ProductItf {
     List<ProductResponse> getAllProducts();
+
     ProductResponse save(ProductRequest productRequest, List<MultipartFile> productFiles, MultipartFile variantImage) throws IOException;
 }
